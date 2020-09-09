@@ -28,7 +28,7 @@ const menus = [
 
 export default function LeftBar() {
   return (
-    <div className="lg:w-1/5 border-r border-lighter px-2 lg:px-6 py-2 flex flex-col justify-between">
+    <div className="hidden sm:block lg:w-1/5 border-r border-lighter px-2 lg:px-6 py-2 flex flex-col justify-between">
       <div className="w-full">
         <div className="h-12 w-12 hover:bg-lightblue text-3xl rounded-full text-blue text-center">
           <FontAwesomeIcon icon={faTwitter} className="h-12" />
