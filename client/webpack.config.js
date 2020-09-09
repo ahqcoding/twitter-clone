@@ -9,7 +9,7 @@ module.exports = {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
   },
-  devtool: "sourcemap",
+  devtool: "source-map",
   devServer: {
     contentBase: "./dist",
   },
