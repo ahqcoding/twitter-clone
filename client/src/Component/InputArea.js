@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 export default function InputArea() {
   return (
-    <div className="px-5 py-3 border-b-8 border-lighter flex">
+    <div className="px-5 py-3 border-lighter flex">
       <div className="flex-none">
         <img
           src="https://pbs.twimg.com/profile_images/67285389/digdug-fygar-2a_reasonably_small.gif"
@@ -18,7 +18,7 @@ export default function InputArea() {
       <form className="w-full px-4 relative">
         <textarea
           className="mt-3 pb-3 w-full focus:outline-none"
-          placeholder="What's up?"
+          placeholder="What's happening?"
         />
         <div className="flex items-center">
           <div className="w-10 h-10 text-center hover:bg-lightblue rounded-full">

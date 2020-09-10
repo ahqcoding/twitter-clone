@@ -16,7 +16,7 @@ export default function PostItem() {
   };
   return (
     <div className="flex flex-col-reverse">
-      <div className="w-full p-2 border-b hover:bg-lighter flex ">
+      <div className="w-full px-5 py-2 border-b hover:bg-lighter flex ">
         <div className="mr-4  ">
           <Link to="/user/unknown">
             <img
@@ -38,12 +38,12 @@ export default function PostItem() {
               >
                 @SaaSyEth
               </p>
-              <UserCard show={showUserCard} />
             </Link>
 
             <p className="text-sm text-dark ml-2"> 1 sec </p>
             {/* <i className="fas fa-angle-down text-dark ml-auto"></i> */}
           </div>
+          <UserCard show={showUserCard} />
           <p className="py-2">test content</p>
           <img
             src="https://pbs.twimg.com/media/EhhOdy7VoAAxuKx?format=jpg&name=large"

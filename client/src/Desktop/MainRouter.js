@@ -17,12 +17,14 @@ export default function MainRouter() {
           <SignUp />
         </Route>
         <Route path="/explore">
-          <MenuBar />
-          <Explore />
+          <Fragment>
+            <Explore />
+          </Fragment>
         </Route>
         <Route path="/">
-          <MenuBar />
-          <Home />
+          <Fragment>
+            <Home />
+          </Fragment>
         </Route>
       </Switch>
     </Fragment>

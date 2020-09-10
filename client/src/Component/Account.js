@@ -1,6 +1,8 @@
 import React from "react";
-
-export default function Account() {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+export default function Account({ user }) {
+  console.log(user);
   return (
     <div className="w-full relative">
       <div className="flex items-center w-full hover:bg-lightblue rounded-full p-2 focus:outline-none">
@@ -9,10 +11,16 @@ export default function Account() {
           className="w-10 h-10 rounded-full border border-lighter"
         />
         <div className="hidden xl:block ml-4">
-          <p className="text-sm font-bold leading-tight"> Steph Dietz </p>
-          <p className="text-sm leading-tight"> @SaaSyEth </p>
+          <p className="text-sm font-bold leading-tight">
+            {user && user.username}{" "}
+          </p>
+          <p className="text-sm leading-tight"> @{user && user.username} </p>
         </div>
-        <i className="hidden xl:block fas fa-angle-down ml-auto text-lg"></i>
+
+        <FontAwesomeIcon
+          icon={faAngleDown}
+          className="hidden xl:block ml-auto text-lg"
+        />
       </div>
       {/* <div class="absolute bottom-0 left-0 w-64 rounded-lg shadow-md border-lightest bg-white mb-16">
             <button class="p-3 flex items-center w-full hover:bg-lightest p-2 focus:outline-none">

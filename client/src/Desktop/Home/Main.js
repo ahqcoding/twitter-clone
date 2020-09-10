@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import PreferenceSwithcer from "../../Component/PreferenceSwithcer";
 import InputArea from "../../Component/InputArea";
 import PostItem from "../../Component/PostItem";
 
-export default function Main() {
+export default function Main({ user }) {
   return (
     <div className="w-full lg:w-1/2 h-full overflow-y-scroll relative">
       <div className="px-5 py-3 border-b border-lighter flex items-center justify-between">

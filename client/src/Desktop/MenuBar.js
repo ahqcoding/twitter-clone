@@ -27,7 +27,7 @@ const menus = [
   { icon: faEllipsisH, title: "More" },
 ];
 
-export default function MenuBar() {
+export default function MenuBar({ user }) {
   return (
     <div className="flex flex-col xl:w-1/5 border-r border-lighter px-2 lg:px-6 py-2 justify-between">
       <div className="w-full">
@@ -39,7 +39,7 @@ export default function MenuBar() {
         ))}
         <TweetButton />
       </div>
-      <Account />
+      <Account user={user} />
     </div>
   );
 }

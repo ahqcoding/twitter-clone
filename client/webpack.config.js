@@ -13,6 +13,9 @@ module.exports = {
   devServer: {
     contentBase: "./dist",
     historyApiFallback: true,
+    proxy: {
+      "/auth": "http://localhost:4000",
+    },
   },
   output: {
     filename: "bundle.js",

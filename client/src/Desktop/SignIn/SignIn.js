@@ -1,7 +1,13 @@
 import React from "react";
 import { Formik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../_actions/auth.actions";
+
 export default function SignIn() {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const history = useHistory();
   return (
     <div className="container mx-auto h-full flex flex-col justify-center items-center">
       <h1 className="text-2xl mb-4">Sign In</h1>
@@ -17,13 +23,24 @@ export default function SignIn() {
             ) {
               errors.email = "Invalid email address";
             }
+            if (!values.password) {
+              errors.password = "Required";
+            } else if (values.password.length < 6) {
+              errors.password = "password length should be larger than 6";
+            }
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
+            console.log("test");
+            if (values.email && values.password) {
+              const { from } = location.state || { from: { pathname: "/" } };
+              console.log("test");
+              dispatch(
+                authActions.signin(values, () => {
+                  history.push(from);
+                })
+              );
+            }
           }}
         >
           {({
@@ -43,7 +60,7 @@ export default function SignIn() {
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
-                  for="email"
+                  htmlFor="email"
                 >
                   Email
                 </label>
@@ -63,7 +80,7 @@ export default function SignIn() {
               <div className="mb-6">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
-                  for="password"
+                  htmlFor="password"
                 >
                   Password
                 </label>
@@ -74,7 +91,7 @@ export default function SignIn() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
-                  className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="******************"
                 />
 
