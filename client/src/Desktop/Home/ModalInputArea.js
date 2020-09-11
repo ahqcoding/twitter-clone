@@ -1,5 +1,5 @@
 import React from "react";
-import InputArea from "../../Component/InputArea";
+import InputBox from "../../Component/InputBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 export default function ModalInputArea() {
@@ -10,7 +10,7 @@ export default function ModalInputArea() {
           <FontAwesomeIcon icon={faTimes} className="text-2xl" />
         </div>
 
-        <InputArea />
+        <InputBox />
       </div>
     </div>
   );

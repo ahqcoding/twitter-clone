@@ -9,7 +9,7 @@ function signin(user) {
     body: JSON.stringify(user),
   };
 
-  return fetch("/auth/signin", requestOptions)
+  return fetch("/api/auth/signin", requestOptions)
     .then(handleResponse)
     .then((user) => {
       localStorage.setItem("user", JSON.stringify(user));

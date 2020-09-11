@@ -1,27 +1,24 @@
-import { publish } from "../_actions/post.actions";
-import {postConstants} from "../_constants/post.constants";
+import postConstants from "../_constants/post.constants";
 
-const initialState = [];
+const initialState = { posts: [] };
 
-export function publish(state = initialState, action) {
-    switch(action.type) {
-        case postConstants.
-    }
+export function addPost(state = initialState, action) {
   switch (action.type) {
-    case authConstants.SIGNIN_REQUEST:
+    case postConstants.ADD_POST_REQUEST:
       return {
-        loggingIn: true,
-        user: action.user,
+        publishing: true,
+        posts: action.posts,
       };
-    case authConstants.SIGNIN_SUCCESS:
+    case postConstants.ADD_POST_SUCCESS:
       return {
-        loggedIn: true,
-        user: action.user,
+        published: true,
+        posts: action.posts,
       };
-    case authConstants.SIGNIN_FAILURE:
-      return {};
-    case authConstants.SIGNOUT:
-      return {};
+    case postConstants.ADD_POST_FAILURE:
+      return {
+        posts: action.posts,
+        failure: true,
+      };
     default:
       return state;
   }

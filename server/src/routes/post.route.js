@@ -10,9 +10,7 @@ router
   .route("/api/posts/feed/")
   .get(authCtrl.authenticate, postCtrl.listNewsFeed);
 
-router
-  .route("/api/posts/new/:userId")
-  .post(authCtrl.authenticate, authCtrl.hasAuthorization, postCtrl.create);
+router.route("/api/posts/new/").post(authCtrl.authenticate, postCtrl.create);
 
 router
   .route("/api/posts/:postId")

@@ -17,14 +17,13 @@ export default function PostItem() {
   return (
     <div className="flex flex-col-reverse">
       <div className="w-full px-5 py-2 border-b hover:bg-lighter flex ">
-        <div className="mr-4  ">
-          <Link to="/user/unknown">
-            <img
-              src="https://pbs.twimg.com/profile_images/67285389/digdug-fygar-2a_reasonably_small.gif"
-              className="w-12 h-12 rounded-full flex-none hover:bg-lightest"
-            />
-          </Link>
-        </div>
+        <Link to="/user/unknown">
+          <img
+            src="https://pbs.twimg.com/profile_images/67285389/digdug-fygar-2a_reasonably_small.gif"
+            className="mr-4 w-12 h-12 rounded-full flex-none border-lighter hover:bg-lightest"
+          />
+        </Link>
+
         <div className="w-full">
           <div className="flex items-center w-full">
             <Link to="/user/unknown" className="hover:underline">

@@ -3,9 +3,8 @@ const _ = require("lodash");
 const { getErrorMessage } = require("../helpers/dbErrorHandler");
 
 const create = (req, res, next) => {
-  console.log("test", req.body);
   let post = new Post(req.body);
-  post.postedBy = req.profile;
+  post.postedBy = req.user;
   post.save((err, result) => {
     if (err) {
       return res.status(400).json({
