@@ -6,7 +6,7 @@ import MobileLayout from "./Mobile/MobileLayout";
 
 export default function App() {
   return (
-    <div className={"flex h-screen w-full h-full relative "}>
+    <div className={"flex h-screen w-full h-full relative"}>
       <DesktopLayout />
     </div>
   );

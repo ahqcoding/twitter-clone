@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { authActions } from "../../_actions/auth.actions";
+import Dialog from "../../Component/Dialog";
 
 const SingupSchema = Yup.object().shape({
   username: Yup.string()
@@ -15,15 +16,34 @@ const SingupSchema = Yup.object().shape({
 });
 
 export default function SignUp() {
+  let state = useSelector((state) => state.signup);
   const dispatch = useDispatch();
+  let showDialog = state.failed || state.registering || state.registering;
+  console.log(state);
   return (
     <div className="container mx-auto h-full flex flex-col justify-center items-center">
+      {showDialog && (
+        <Dialog>
+          {state.failed ? (
+            <p>something went wrong, please try again</p>
+          ) : state.registering ? (
+            <p>loading</p>
+          ) : (
+            state.registered && <p>Success, you can signin now.</p>
+          )}
+          <button className="bg-blue hover:bg-darkblue text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            confirm
+          </button>
+        </Dialog>
+      )}
+
       <h1 className="text-2xl mb-4">Sign Up</h1>
       <div className="w-full max-w-xs border-t">
         <Formik
           initialValues={{ username: "", email: "", password: "" }}
           validationSchema={SingupSchema}
           onSubmit={(values, { setSubmitting }) => {
+            setSubmitting(true);
             dispatch(
               authActions.signup(values, () => {
                 console.log("success");
