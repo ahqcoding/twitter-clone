@@ -1,29 +1,34 @@
 import React from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as Yup from "yup";
+import { authActions } from "../../_actions/auth.actions";
+
+const SingupSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(2, "Too short!")
+    .max(16, "Too Long!")
+    .required("required"),
+  email: Yup.string().email().required("required"),
+  password: Yup.string().min(8, "Minimum length is 8").required("required"),
+});
+
 export default function SignUp() {
+  const dispatch = useDispatch();
   return (
     <div className="container mx-auto h-full flex flex-col justify-center items-center">
       <h1 className="text-2xl mb-4">Sign Up</h1>
       <div className="w-full max-w-xs border-t">
         <Formik
-          initialValues={{ email: "", password: "" }}
-          validate={(values) => {
-            const errors = {};
-            if (!values.email) {
-              errors.email = "Required";
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            ) {
-              errors.email = "Invalid email address";
-            }
-            return errors;
-          }}
+          initialValues={{ username: "", email: "", password: "" }}
+          validationSchema={SingupSchema}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
+            dispatch(
+              authActions.signup(values, () => {
+                console.log("success");
+              })
+            );
           }}
         >
           {({
@@ -43,7 +48,25 @@ export default function SignUp() {
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
-                  for="email"
+                  htmlFor="username"
+                >
+                  Username
+                </label>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  id="username"
+                  type="username"
+                  name="username"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.username}
+                />
+                <span className="text-red-600 text-sm">
+                  {errors.username && touched.username && errors.username}
+                </span>
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="email"
                 >
                   Email
                 </label>
@@ -63,7 +86,7 @@ export default function SignUp() {
               <div className="mb-6">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
-                  for="password"
+                  htmlFor="password"
                 >
                   Password
                 </label>

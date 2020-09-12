@@ -26,7 +26,7 @@ function signup(user) {
     },
     body: JSON.stringify(user),
   };
-  return fetch("/user/signup", requestOptions).then(handleResponse);
+  return fetch("/api/users", requestOptions).then(handleResponse);
 }
 
 function signout() {
@@ -36,6 +36,7 @@ function signout() {
 function handleResponse(response) {
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
+    console.log(data);
     if (!response.ok) {
       const error = data || response.statusText;
       return Promise.reject(error);

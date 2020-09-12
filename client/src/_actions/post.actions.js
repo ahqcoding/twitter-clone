@@ -26,8 +26,34 @@ function addPost(post) {
   }
 }
 
+function fetchPosts() {
+  return (dispatch) => {
+    dispatch(request());
+    postService
+      .fetchPosts()
+      .then((data) => {
+        dispatch(success(data));
+      })
+      .catch((error) => {
+        console.log(error);
+        dispatch(failure(error.toString()));
+      });
+  };
+
+  function request() {
+    return { type: postConstants.FETCH_POSTS_REQUEST };
+  }
+  function success(posts) {
+    return { type: postConstants.FETCH_POSTS_SUCCESS, posts };
+  }
+  function failure(error) {
+    return { type: postConstants.FETCH_POSTS_FAILURE, error };
+  }
+}
+
 const postActions = {
   addPost,
+  fetchPosts,
 };
 
 export default postActions;

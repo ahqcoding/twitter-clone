@@ -23,3 +23,23 @@ export function authentication(state = initialState, action) {
       return state;
   }
 }
+
+export function signup(state = {}, action) {
+  switch (action.type) {
+    case authConstants.SIGNUP_REQUEST:
+      return {
+        registering: true,
+      };
+    case authConstants.SIGNUP_SUCCESS:
+      return {
+        registered: true,
+      };
+    case authConstants.SIGNUP_FAILURE:
+      return {
+        failed: true,
+        error: action.error,
+      };
+    default:
+      return state;
+  }
+}

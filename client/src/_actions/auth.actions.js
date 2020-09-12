@@ -28,7 +28,21 @@ function signin(user, onSignIn) {
   }
 }
 
-function signup(username, password) {
+function signup(user, onSignUp) {
+  return (dispatch) => {
+    dispatch(request({ user }));
+    authService
+      .signup(user)
+      .then((data) => {
+        dispatch(success(data));
+        onSignUp();
+      })
+      .catch((error) => {
+        dispatch(failure(error.toString()));
+        dispatch(alertActions.error(error.toString()));
+      });
+  };
+
   function request(user) {
     return { type: authConstants.SIGNUP_REQUEST, user };
   }
